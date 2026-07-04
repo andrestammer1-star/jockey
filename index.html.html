@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jockey Closet — Brilla en cada ocasión sin comprar de más</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   JOCKEY CLOSET — hoja de estilos
+   Paleta: papel crema, tinta negra, oxblood (seda de carrera), latón
+   Tipografía: Cormorant Garamond (display) + Jost (utilitaria)
+   ============================================================ */
+
+:root{
+  --cream:#F4EFE4;
+  --paper:#FBF8F1;
+  --ink:#181510;
+  --charcoal:#2B2822;
+  --oxblood:#6E1B24;
+  --oxblood-light:#8C2A34;
+  --gold:#A5813C;
+  --gold-soft:#C9A661;
+  --muted:#7C7264;
+  --line: rgba(24,21,16,0.14);
+  --line-strong: rgba(24,21,16,0.28);
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --radius: 2px;
+  --container: 1180px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--font-sans);
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.05;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; }
+ul{ margin:0; padding:0; list-style:none; }
+h1,h2,h3,h4,p{ margin:0; }
+
+:focus-visible{ outline:2px solid var(--oxblood); outline-offset:3px; }
+
+.container{ max-width:var(--container); margin:0 auto; padding:0 32px; }
+@media (max-width:640px){ .container{ padding:0 20px; } }
+
+.eyebrow{
+  font-family:var(--font-sans);
+  font-size:12px;
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+  color:var(--oxblood);
+  font-weight:500;
+}
+
+h1,h2,h3{ font-family:var(--font-display); font-weight:500; letter-spacing:0.01em; }
+
+.section{ position:relative; z-index:1; padding:110px 0; }
+.section-head{ max-width:640px; margin-bottom:56px; }
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.section-title{ font-size:clamp(30px,4vw,44px); margin-top:14px; }
+.section-sub{ margin-top:18px; color:var(--muted); font-size:17px; max-width:520px; }
+.section-head.center .section-sub{ margin-left:auto; margin-right:auto; }
+
+.divider{
+  width:64px; height:1px; background:var(--gold); margin:0 auto;
+}
+
+/* ---------- botones ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:16px 34px;
+  font-family:var(--font-sans); font-size:12.5px; letter-spacing:0.22em; text-transform:uppercase;
+  border:1px solid var(--ink); border-radius:var(--radius);
+  background:transparent; color:var(--ink);
+  transition:background .25s ease, color .25s ease, border-color .25s ease, transform .15s ease;
+  white-space:nowrap;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn-primary{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+.btn-primary:hover{ background:var(--oxblood); border-color:var(--oxblood); }
+.btn-outline:hover{ background:var(--ink); color:var(--cream); }
+.btn-gold{ border-color:var(--gold-soft); color:var(--ink); }
+.btn-gold:hover{ background:var(--gold); border-color:var(--gold); color:var(--ink); }
+.btn-light{ border-color:rgba(244,239,228,0.5); color:var(--cream); }
+.btn-light:hover{ background:var(--cream); color:var(--ink); }
+.btn:disabled{ opacity:0.35; cursor:not-allowed; transform:none; }
+.btn:disabled:hover{ background:inherit; }
+
+.btn-text{
+  background:none; border:none; padding:0; color:var(--ink);
+  font-family:var(--font-sans); font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+  border-bottom:1px solid var(--line-strong);
+}
+.btn-text:hover{ border-color:var(--ink); }
+
+.btn-add{
+  background:none; border:1px solid var(--line-strong); border-radius:var(--radius);
+  padding:9px 14px; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink);
+  transition:background .2s ease,color .2s ease;
+}
+.btn-add:hover{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+
+/* ---------- monograma ---------- */
+.monogram{ width:100%; height:100%; color:currentColor; }
+
+/* ==================== NAV ==================== */
+#site-nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(244,239,228,0.92); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:var(--container); margin:0 auto; padding:0 32px;
+  display:flex; align-items:center; justify-content:space-between; height:76px;
+}
+.nav-brand{ display:flex; align-items:center; gap:12px; }
+.nav-brand .monogram-slot{ width:26px; height:26px; color:var(--ink); }
+.nav-brand-text{ font-family:var(--font-sans); font-size:13px; letter-spacing:0.3em; text-transform:uppercase; }
+.nav-links{ display:flex; align-items:center; gap:38px; }
+.nav-links a{
+  font-family:var(--font-sans); font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);
+  padding-bottom:4px; border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease;
+}
+.nav-links a:hover{ border-color:var(--oxblood); color:var(--oxblood); }
+.nav-right{ display:flex; align-items:center; gap:16px; }
+.nav-closet{
+  display:none; align-items:center; gap:8px; border:1px solid var(--ink); border-radius:20px;
+  padding:8px 16px; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+}
+.nav-closet-count{
+  background:var(--oxblood); color:var(--cream); border-radius:50%; width:18px; height:18px;
+  display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-family:var(--font-sans);
+}
+#nav-toggle{ display:none; background:none; border:none; width:32px; height:22px; position:relative; }
+#nav-toggle span{ position:absolute; left:0; right:0; height:1.5px; background:var(--ink); }
+#nav-toggle span:nth-child(1){ top:0; }
+#nav-toggle span:nth-child(2){ top:10px; }
+#nav-toggle span:nth-child(3){ top:20px; }
+
+@media (max-width:880px){
+  .nav-links{
+    position:fixed; inset:76px 0 0 0; background:var(--cream);
+    flex-direction:column; justify-content:flex-start; align-items:flex-start;
+    padding:40px 32px; gap:28px; transform:translateX(100%); transition:transform .3s ease;
+  }
+  .nav-links a{ font-size:16px; }
+  #site-nav.nav-open .nav-links{ transform:translateX(0); }
+  #nav-toggle{ display:block; }
+  .nav-brand-text{ font-size:11px; }
+}
+
+/* ==================== HERO ==================== */
+.hero{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:160px 24px 100px; position:relative; overflow:hidden;
+}
+.hero-ring{
+  position:absolute; width:820px; height:820px; border:1px solid var(--line); border-radius:50%;
+  top:50%; left:50%; transform:translate(-50%,-50%);
+}
+.hero-ring.r2{ width:620px; height:620px; border-color:var(--line); }
+.hero .monogram-slot{ width:74px; height:74px; color:var(--oxblood); margin:0 auto 28px; }
+.hero-word{
+  font-family:var(--font-display); font-weight:500;
+  font-size:clamp(42px,9vw,104px); letter-spacing:0.06em; line-height:1.02;
+}
+.hero-word span{ display:block; }
+.hero-slogan{
+  margin-top:26px; font-family:var(--font-sans); font-style:normal; font-size:13px;
+  letter-spacing:0.24em; text-transform:uppercase; color:var(--oxblood);
+}
+.hero-text{ margin-top:30px; max-width:520px; color:var(--muted); font-size:17px; }
+.hero-actions{ margin-top:44px; display:flex; gap:18px; flex-wrap:wrap; justify-content:center; position:relative; z-index:2; }
+
+/* ==================== COMO FUNCIONA ==================== */
+.steps{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:28px; position:relative;
+}
+.steps::before{
+  content:""; position:absolute; top:26px; left:6%; right:6%; height:1px;
+  background:repeating-linear-gradient(90deg, var(--line-strong) 0 8px, transparent 8px 16px);
+  z-index:0;
+}
+.step{ position:relative; z-index:1; padding-right:10px; }
+.step-num{
+  width:52px; height:52px; border:1px solid var(--oxblood); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:19px; color:var(--oxblood); background:var(--cream); margin-bottom:22px;
+}
+.step h3{ font-size:21px; margin-bottom:10px; }
+.step p{ color:var(--muted); font-size:15px; }
+.steps-support{ margin-top:56px; text-align:center; font-family:var(--font-display); font-size:22px; font-style:italic; color:var(--ink); }
+
+@media (max-width:880px){
+  .steps{ grid-template-columns:1fr 1fr; row-gap:44px; }
+  .steps::before{ display:none; }
+}
+@media (max-width:520px){ .steps{ grid-template-columns:1fr; } }
+
+/* ==================== MEMBRESIAS ==================== */
+.plans-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; align-items:stretch; }
+.plan-card{
+  border:1px solid var(--line-strong); border-radius:var(--radius); padding:44px 34px;
+  display:flex; flex-direction:column; background:var(--paper);
+}
+.plan-card .eyebrow{ opacity:0.8; }
+.plan-card h3{ font-size:32px; margin-top:10px; }
+.plan-card .plan-price{ font-family:var(--font-display); font-size:46px; margin-top:18px; }
+.plan-card .plan-price sup{ font-size:16px; font-family:var(--font-sans); vertical-align:top; margin-right:2px; }
+.plan-meta{ margin-top:6px; font-size:13px; color:var(--muted); letter-spacing:0.05em; }
+.plan-desc{ margin-top:20px; font-size:14.5px; color:var(--muted); font-style:italic; font-family:var(--font-display); font-size:18px; line-height:1.5; }
+.plan-brands{ margin-top:22px; font-size:12.5px; letter-spacing:0.03em; color:var(--ink); line-height:1.8; border-top:1px solid var(--line); padding-top:18px; }
+.plan-brands b{ display:block; font-family:var(--font-sans); text-transform:uppercase; letter-spacing:0.16em; font-size:10.5px; color:var(--muted); margin-bottom:6px; }
+.plan-card .btn{ margin-top:30px; width:100%; }
+
+.plan-card.tier-black{ background:var(--charcoal); color:var(--cream); border-color:var(--charcoal); }
+.plan-card.tier-black .plan-meta, .plan-card.tier-black .plan-brands b{ color:rgba(244,239,228,0.6); }
+.plan-card.tier-black .plan-brands{ border-color:rgba(244,239,228,0.18); }
+.plan-card.tier-black .eyebrow{ color:var(--gold-soft); }
+
+.plan-card.tier-premium{
+  background:var(--ink); color:var(--cream); border:1px solid var(--gold);
+  transform:translateY(-14px); box-shadow:0 24px 60px rgba(20,15,5,0.18);
+}
+.plan-card.tier-premium .eyebrow{ color:var(--gold-soft); }
+.plan-card.tier-premium .plan-meta, .plan-card.tier-premium .plan-brands b{ color:rgba(244,239,228,0.55); }
+.plan-card.tier-premium .plan-brands{ border-color:rgba(165,129,60,0.35); }
+
+@media (max-width:880px){
+  .plans-grid{ grid-template-columns:1fr; }
+  .plan-card.tier-premium{ transform:none; order:-1; }
+}
+
+/* ==================== GARANTIA ==================== */
+.guarantee-box{
+  display:grid; grid-template-columns:1.1fr repeat(3,0.8fr); gap:40px; align-items:center;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:56px 0;
+}
+.guarantee-text{ color:var(--muted); font-size:16px; max-width:420px; }
+.guarantee-stat{ text-align:center; border-left:1px solid var(--line); padding-left:32px; }
+.guarantee-stat .amount{ font-family:var(--font-display); font-size:34px; color:var(--oxblood); }
+.guarantee-stat .label{ margin-top:8px; font-size:11.5px; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); }
+@media (max-width:880px){
+  .guarantee-box{ grid-template-columns:1fr; }
+  .guarantee-stat{ border-left:none; border-top:1px solid var(--line); padding:20px 0 0; }
+}
+
+/* ==================== OCASIONES ==================== */
+.occasion-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.occasion-card{
+  border:1px solid var(--line); padding:34px 22px; text-align:center; background:var(--paper);
+  transition:border-color .2s ease, background .2s ease;
+}
+.occasion-card:hover{ border-color:var(--oxblood); }
+.occasion-card h4{ font-family:var(--font-display); font-size:21px; margin-bottom:16px; }
+.occasion-card button{ background:none; border:none; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; border-bottom:1px solid var(--line-strong); padding-bottom:2px; }
+.occasion-card button:hover{ border-color:var(--oxblood); color:var(--oxblood); }
+@media (max-width:880px){ .occasion-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .occasion-grid{ grid-template-columns:1fr; } }
+
+/* ==================== BENEFICIOS ==================== */
+.benefits-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px 48px; }
+.benefit{ display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); }
+.benefit .mark{ color:var(--oxblood); font-family:var(--font-display); font-size:20px; line-height:1.4; }
+.benefit p{ font-size:15px; }
+@media (max-width:640px){ .benefits-grid{ grid-template-columns:1fr; } }
+
+/* ==================== FAQ ==================== */
+.faq-list{ max-width:760px; }
+.faq-item{ border-bottom:1px solid var(--line); }
+.faq-question{
+  display:flex; align-items:center; justify-content:space-between; padding:26px 0;
+  background:none; border:none; width:100%; text-align:left; font-family:var(--font-display); font-size:20px; color:var(--ink);
+}
+.faq-icon{ font-family:var(--font-sans); font-size:20px; color:var(--oxblood); transition:transform .25s ease; }
+.faq-item.open .faq-icon{ transform:rotate(45deg); }
+.faq-answer{ max-height:0; overflow:hidden; transition:max-height .3s ease; }
+.faq-item.open .faq-answer{ max-height:260px; }
+.faq-answer p{ padding-bottom:26px; color:var(--muted); font-size:15px; max-width:640px; }
+
+/* ==================== FOOTER ==================== */
+footer{ background:var(--ink); color:var(--cream); padding:80px 0 30px; position:relative; z-index:1; }
+.footer-top{ display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(244,239,228,0.15); }
+.footer-brand .monogram-slot{ width:36px; height:36px; color:var(--gold-soft); margin-bottom:18px; }
+.footer-brand p{ color:rgba(244,239,228,0.6); font-size:13px; letter-spacing:0.08em; margin-top:10px; max-width:220px; }
+.footer-col h5{ font-family:var(--font-sans); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:18px; }
+.footer-col a, .footer-col p{ display:block; color:rgba(244,239,228,0.75); font-size:14px; margin-bottom:12px; }
+.footer-col a:hover{ color:var(--cream); }
+.footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:26px; flex-wrap:wrap; gap:12px; }
+.footer-bottom p{ font-size:12px; color:rgba(244,239,228,0.45); }
+.footer-social{ display:flex; gap:16px; }
+.footer-social a{ width:34px; height:34px; border:1px solid rgba(244,239,228,0.25); border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.footer-social svg{ width:15px; height:15px; color:var(--cream); }
+@media (max-width:880px){ .footer-top{ grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .footer-top{ grid-template-columns:1fr; } }
+
+/* ==================== APP SCREENS (flujo funcional) ==================== */
+.app-screen{ display:none; min-height:100vh; padding:150px 0 100px; position:relative; z-index:1; }
+.app-screen.active{ display:block; }
+.app-head{ max-width:640px; margin:0 auto 56px; text-align:center; }
+.app-head .eyebrow{ display:block; margin-bottom:14px; }
+.app-head h2{ font-size:clamp(28px,4vw,38px); }
+.app-progress{ display:flex; justify-content:center; gap:10px; margin-top:22px; }
+.app-progress span{ width:6px; height:6px; border-radius:50%; background:var(--line-strong); }
+.app-progress span.active{ background:var(--oxblood); }
+.app-narrow{ max-width:960px; margin:0 auto; }
+
+/* --- Pago --- */
+.pago-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; max-width:920px; margin:0 auto; }
+.pago-summary{ border:1px solid var(--line-strong); padding:40px; background:var(--paper); }
+.pago-summary h3{ font-family:var(--font-display); font-size:28px; }
+.pago-line{ display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line); font-size:15px; }
+.pago-line.total{ font-family:var(--font-display); font-size:22px; border-bottom:none; padding-top:20px; }
+.pay-methods{ display:flex; flex-direction:column; gap:14px; }
+.pay-method{
+  border:1px solid var(--line-strong); padding:20px 22px; display:flex; align-items:center; gap:16px;
+  transition:border-color .2s ease, background .2s ease;
+}
+.pay-method:hover{ border-color:var(--ink); }
+.pay-method.selected{ border-color:var(--oxblood); background:rgba(110,27,36,0.05); }
+.pay-method .radio{ width:16px; height:16px; border-radius:50%; border:1px solid var(--ink); flex-shrink:0; position:relative; }
+.pay-method.selected .radio::after{ content:""; position:absolute; inset:3px; border-radius:50%; background:var(--oxblood); }
+.pay-method-name{ font-size:15px; }
+.pago-note{ margin-top:20px; font-size:12.5px; color:var(--muted); }
+@media (max-width:760px){ .pago-grid{ grid-template-columns:1fr; } }
+
+/* --- Bienvenida --- */
+.welcome-box{ text-align:center; max-width:560px; margin:0 auto; }
+.welcome-box .monogram-slot{ width:60px; height:60px; color:var(--oxblood); margin:0 auto 26px; }
+.welcome-box h2{ font-size:clamp(28px,5vw,42px); }
+.welcome-box p{ margin-top:20px; color:var(--muted); font-size:16px; }
+.welcome-actions{ margin-top:40px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* --- Catalogo --- */
+.filters-bar{
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center; padding:22px 0; margin-bottom:44px;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.filters-bar select{
+  border:1px solid var(--line-strong); background:var(--paper); padding:11px 14px; font-family:var(--font-sans);
+  font-size:12.5px; letter-spacing:0.04em; color:var(--ink); border-radius:var(--radius); min-width:150px;
+}
+.filters-bar button{ background:none; border:none; font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:var(--oxblood); border-bottom:1px solid var(--oxblood); padding-bottom:2px; }
+
+.catalog-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.catalog-empty{ grid-column:1/-1; text-align:center; color:var(--muted); padding:60px 0; font-size:16px; }
+.product-card{ border:1px solid var(--line); background:var(--paper); display:flex; flex-direction:column; }
+.product-visual{
+  aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; position:relative; cursor:pointer;
+  color:var(--ink); background:var(--cream);
+}
+.g-icon{ width:38%; height:38%; }
+.product-tier-badge{
+  position:absolute; bottom:14px; left:14px; font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+  padding:5px 10px; border:1px solid currentColor; border-radius:20px;
+}
+.product-card.tier-basic .product-visual{ background:var(--cream); color:var(--ink); }
+.product-card.tier-black .product-visual{ background:var(--charcoal); color:var(--cream); }
+.product-card.tier-premium .product-visual{ background:var(--ink); color:var(--gold-soft); }
+.product-body{ padding:22px; }
+.product-brand{ font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); }
+.product-name{ font-family:var(--font-display); font-size:21px; margin-top:8px; cursor:pointer; }
+.product-occasion{ font-size:12.5px; color:var(--muted); margin-top:8px; }
+.product-actions{ margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+@media (max-width:920px){ .catalog-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .catalog-grid{ grid-template-columns:1fr; } .filters-bar select{ flex:1 1 45%; min-width:120px; } }
+
+/* --- Detalle --- */
+.detalle-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; max-width:980px; margin:0 auto; }
+.detalle-visual{ aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; background:var(--cream); }
+.detalle-visual .g-icon{ width:34%; height:34%; }
+.detalle-visual.tier-basic{ background:var(--cream); color:var(--ink); }
+.detalle-visual.tier-black{ background:var(--charcoal); color:var(--cream); }
+.detalle-visual.tier-premium{ background:var(--ink); color:var(--gold-soft); }
+.detalle-info .product-brand{ margin-bottom:6px; }
+.detalle-info h2{ font-size:32px; }
+.detalle-info .detalle-desc{ margin-top:18px; color:var(--muted); font-size:15.5px; }
+.detalle-info .detalle-combo{ margin-top:14px; font-family:var(--font-display); font-style:italic; font-size:17px; color:var(--ink); }
+.detalle-block{ margin-top:26px; padding-top:22px; border-top:1px solid var(--line); }
+.detalle-block-label{ font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); margin-bottom:10px; }
+.pill{ display:inline-block; border:1px solid var(--line-strong); padding:6px 14px; margin:0 8px 8px 0; font-size:13px; border-radius:20px; }
+.tag{ display:inline-block; border-bottom:1px solid var(--line-strong); padding:0 0 2px; margin:0 14px 8px 0; font-size:13px; }
+.detalle-info p.detalle-plan{ font-family:var(--font-display); font-size:17px; }
+.detalle-actions{ margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; }
+@media (max-width:760px){ .detalle-grid{ grid-template-columns:1fr; } }
+
+/* --- Mi Closet --- */
+.closet-status{ border:1px solid var(--line-strong); background:var(--paper); padding:36px 40px; max-width:760px; margin:0 auto 50px; }
+.closet-status-top{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:10px; }
+.closet-status-top h3{ font-family:var(--font-display); font-size:24px; }
+.closet-status-nums{ font-size:13px; color:var(--muted); }
+.closet-status-nums b{ color:var(--ink); }
+#closet-progress{ display:flex; gap:8px; margin-top:18px; }
+.dot{ width:10px; height:10px; border-radius:50%; border:1px solid var(--line-strong); }
+.dot.filled{ background:var(--oxblood); border-color:var(--oxblood); }
+.closet-dates{ margin-top:22px; display:flex; gap:40px; flex-wrap:wrap; font-size:13px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+.closet-dates b{ display:block; color:var(--ink); font-family:var(--font-display); font-size:16px; margin-top:4px; }
+
+.closet-list{ max-width:760px; margin:0 auto; }
+.closet-row{ display:flex; align-items:center; gap:18px; padding:16px 0; border-bottom:1px solid var(--line); }
+.closet-row-icon{ width:56px; height:56px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.closet-row-icon .g-icon{ width:60%; height:60%; }
+.closet-row-icon.tier-basic{ background:var(--cream); color:var(--ink); }
+.closet-row-icon.tier-black{ background:var(--charcoal); color:var(--cream); }
+.closet-row-icon.tier-premium{ background:var(--ink); color:var(--gold-soft); }
+.closet-row-info{ flex:1; }
+.closet-row-name{ font-family:var(--font-display); font-size:18px; }
+.closet-row-brand{ font-size:12.5px; color:var(--muted); margin-top:4px; }
+.closet-row-remove{ background:none; border:none; font-size:22px; color:var(--muted); line-height:1; }
+.closet-row-remove:hover{ color:var(--oxblood); }
+.closet-cta{ max-width:760px; margin:36px auto 0; text-align:right; }
+
+/* --- Confirmación / ticket --- */
+.ticket-wrap{ display:flex; justify-content:center; }
+.ticket{
+  max-width:480px; width:100%; background:var(--paper); border:1px solid var(--gold-soft);
+  position:relative; padding:44px 40px 34px; text-align:center;
+}
+.ticket .monogram-slot{ width:46px; height:46px; color:var(--oxblood); margin:0 auto 18px; }
+.ticket h2{ font-size:26px; }
+.ticket p.lead{ margin-top:14px; color:var(--muted); font-size:14.5px; }
+.ticket-perf{
+  position:relative; margin:30px -40px; border-top:1px dashed var(--line-strong); border-bottom:1px dashed var(--line-strong); padding:24px 40px;
+}
+.ticket-perf::before, .ticket-perf::after{
+  content:""; position:absolute; top:-9px; width:18px; height:18px; background:var(--cream); border-radius:50%;
+}
+.ticket-perf::before{ left:-9px; }
+.ticket-perf::after{ right:-9px; }
+.ticket ul{ text-align:left; font-size:14px; }
+.ticket ul li{ padding:6px 0; border-bottom:1px solid var(--line); }
+.ticket-dates{ display:flex; justify-content:space-between; margin-top:20px; font-size:12px; text-align:left; color:var(--muted); }
+.ticket-dates b{ display:block; font-family:var(--font-display); font-size:16px; color:var(--ink); margin-top:4px; }
+.ticket-code{ margin-top:28px; }
+.ticket-code .eyebrow{ display:block; margin-bottom:8px; }
+.ticket-code-value{ font-family:var(--font-sans); font-size:26px; letter-spacing:0.18em; color:var(--oxblood); }
+.ticket-guarantee{ margin-top:16px; font-size:12.5px; color:var(--muted); }
+.ticket-stub{ margin-top:24px; height:6px; background:repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 12px); opacity:0.5; }
+.reserva-actions{ margin-top:40px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* ---------- toast ---------- */
+#toast{
+  position:fixed; left:50%; bottom:36px; transform:translate(-50%,20px);
+  background:var(--ink); color:var(--cream); padding:15px 28px; border-radius:30px;
+  font-size:13.5px; letter-spacing:0.03em; opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s ease;
+  z-index:300; border:1px solid var(--gold-soft); max-width:88vw; text-align:center;
+}
+#toast.show{ opacity:1; transform:translate(-50%,0); }
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#" data-goto="inicio">
+      <span class="monogram-slot"></span>
+      <span class="nav-brand-text">Jockey Closet</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-goto="inicio">Inicio</a>
+      <a href="#" data-goto="como-funciona">Cómo funciona</a>
+      <a href="#" data-goto="membresias">Membresías</a>
+      <a href="#" data-goto="catalogo">Catálogo</a>
+      <a href="#" data-goto="faq">Preguntas frecuentes</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-closet" id="nav-closet" data-goto="closet">
+        Mi Closet <span class="nav-closet-count" id="closet-count">0</span>
+      </button>
+      <button id="nav-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HOME (landing scrollable) ============ -->
+<div id="home">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <span class="hero-ring"></span>
+    <span class="hero-ring r2"></span>
+    <span class="monogram-slot"></span>
+    <h1 class="hero-word"><span>Jockey</span><span>Closet</span></h1>
+    <p class="hero-slogan">«Brilla en cada ocasión sin comprar de más»</p>
+    <p class="hero-text">Alquila prendas y accesorios de marcas seleccionadas para cada ocasión. Elige tu plan, reserva tu look y disfruta una nueva forma de vivir la moda.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" data-goto="membresias">Ver membresías</button>
+      <button class="btn btn-outline" data-goto="catalogo">Explorar catálogo</button>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section" id="como-funciona">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow">El proceso</p>
+        <h2 class="section-title">Cómo funciona</h2>
+        <p class="section-sub">Cuatro pasos, pensados para que vivir la moda sea tan simple como reservar una mesa.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Elige tu membresía</h3>
+          <p>Selecciona el plan que mejor se adapte a tus ocasiones.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Explora el catálogo</h3>
+          <p>Filtra prendas y accesorios por marca, ocasión, talla y estilo.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Reserva tu look</h3>
+          <p>Elige tus prendas disponibles según tu plan y confirma tu reserva.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Usa y devuelve</h3>
+          <p>Disfruta tu ocasión y devuelve las prendas en la fecha indicada.</p>
+        </div>
+      </div>
+      <p class="steps-support">Elige. Reserva. Usa. Devuelve. Así de fácil es vivir Jockey Closet.</p>
+    </div>
+  </section>
+
+  <!-- MEMBRESIAS -->
+  <section class="section" id="membresias" style="background:var(--paper);">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow">Membresías</p>
+        <h2 class="section-title">Un plan para cada ocasión</h2>
+        <p class="section-sub">Tres formas de acceder a un closet compartido de marcas seleccionadas, sin comprometerte a comprar.</p>
+      </div>
+      <div class="plans-grid">
+
+        <article class="plan-card tier-basic">
+          <p class="eyebrow">Plan · Prueba</p>
+          <h3>Basic</h3>
+          <p class="plan-price"><sup>S/</sup>99</p>
+          <p class="plan-meta">2 prendas incluidas · Garantía reembolsable S/200</p>
+          <p class="plan-desc">Ideal para probar el servicio y acceder a prendas casuales, modernas y versátiles para ocasiones del día a día.</p>
+          <div class="plan-brands"><b>Marcas incluidas</b>Zara, H&amp;M, Stradivarius, Mango, American Eagle, Exit</div>
+          <button class="btn btn-outline" data-plan="basic">Elegir Basic</button>
+        </article>
+
+        <article class="plan-card tier-black">
+          <p class="eyebrow">Plan · Popular</p>
+          <h3>Black</h3>
+          <p class="plan-price"><sup>S/</sup>379</p>
+          <p class="plan-meta">4 prendas incluidas · Garantía reembolsable S/500</p>
+          <p class="plan-desc">Perfecto para quienes necesitan más variedad de looks para cenas, reuniones, after office, entrevistas o eventos sociales.</p>
+          <div class="plan-brands"><b>Marcas incluidas</b>Zara Exclusivo, H&amp;M, Stradivarius, Mango, American Eagle, Guess, Oysho, Renzo Costa, Crepier, Calvin Klein, LÚVARO</div>
+          <button class="btn btn-gold" data-plan="black">Elegir Black</button>
+        </article>
+
+        <article class="plan-card tier-premium">
+          <p class="eyebrow">Plan · Exclusivo</p>
+          <h3>Premium</h3>
+          <p class="plan-price"><sup>S/</sup>599</p>
+          <p class="plan-meta">7 prendas incluidas · Garantía reembolsable S/800</p>
+          <p class="plan-desc">Pensado para ocasiones especiales, eventos importantes y usuarios que buscan una experiencia de moda más exclusiva.</p>
+          <div class="plan-brands"><b>Marcas incluidas</b>Massimo Dutti, Adolfo Domínguez, Hugo Boss, Guess, Longchamp, Purificación García, Dolce &amp; Gabbana, Dior, Karl Lagerfeld, Scalpers, Lacoste, Michael Kors, Louis Vuitton</div>
+          <button class="btn btn-light" data-plan="premium">Elegir Premium</button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTIA -->
+  <section class="section" id="garantia" style="padding-top:0;">
+    <div class="container">
+      <div class="guarantee-box">
+        <div>
+          <p class="eyebrow">Garantía reembolsable</p>
+          <p class="guarantee-text">Para cuidar la calidad de las prendas y accesorios, cada membresía incluye una garantía reembolsable. Este monto se devuelve cuando las prendas son entregadas en buen estado y dentro del plazo establecido. El uso normal, como arrugas o limpieza básica, está contemplado dentro del servicio.</p>
+        </div>
+        <div class="guarantee-stat"><p class="amount">S/200</p><p class="label">Basic</p></div>
+        <div class="guarantee-stat"><p class="amount">S/500</p><p class="label">Black</p></div>
+        <div class="guarantee-stat"><p class="amount">S/800</p><p class="label">Premium</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OCASIONES -->
+  <section class="section" id="ocasiones" style="background:var(--paper);">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow">Ocasiones</p>
+        <h2 class="section-title">Un look para cada momento</h2>
+      </div>
+      <div class="occasion-grid">
+        <div class="occasion-card"><h4>Boda</h4><button data-occasion="Boda">Ver looks</button></div>
+        <div class="occasion-card"><h4>Cena</h4><button data-occasion="Cena">Ver looks</button></div>
+        <div class="occasion-card"><h4>Entrevista</h4><button data-occasion="Entrevista">Ver looks</button></div>
+        <div class="occasion-card"><h4>After office</h4><button data-occasion="After office">Ver looks</button></div>
+        <div class="occasion-card"><h4>Conferencia</h4><button data-occasion="Conferencia">Ver looks</button></div>
+        <div class="occasion-card"><h4>Viaje</h4><button data-occasion="Viaje">Ver looks</button></div>
+        <div class="occasion-card"><h4>Evento especial</h4><button data-occasion="Evento especial">Ver looks</button></div>
+        <div class="occasion-card"><h4>Salida</h4><button data-occasion="Salida">Ver looks</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="section" id="beneficios">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Beneficios</p>
+        <h2 class="section-title">Vivir la moda, sin acumularla</h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit"><span class="mark">—</span><p>Acceso a prendas y accesorios de marcas seleccionadas.</p></div>
+        <div class="benefit"><span class="mark">—</span><p>Looks pensados para diferentes ocasiones.</p></div>
+        <div class="benefit"><span class="mark">—</span><p>No necesitas comprar una prenda nueva para usarla una sola vez.</p></div>
+        <div class="benefit"><span class="mark">—</span><p>Membresías según tu estilo de vida.</p></div>
+        <div class="benefit"><span class="mark">—</span><p>Garantía reembolsable en cada plan.</p></div>
+        <div class="benefit"><span class="mark">—</span><p>Reserva fácil, directamente desde la web.</p></div>
+        <div class="benefit"><span class="mark">—</span><p>Experiencia respaldada por Jockey Plaza.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="background:var(--paper);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 class="section-title">Todo lo que debes saber</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question"><span>¿Qué es Jockey Closet?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Es un servicio de alquiler de prendas y accesorios de marcas seleccionadas del Jockey Plaza para diferentes ocasiones.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>¿Cómo funciona la garantía?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>La garantía es reembolsable y se devuelve cuando las prendas son entregadas en buen estado.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>¿Cuántas prendas puedo elegir?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Depende de tu membresía: Basic incluye 2 prendas, Black incluye 4 prendas y Premium incluye 7 prendas.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>¿Puedo pagar con Yape?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Sí, la web acepta Yape como método de pago junto con tarjeta de crédito y débito.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>¿Qué pasa si daño una prenda?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>El equipo revisará el estado de la prenda. Si hay daño grave, se podrá descontar un monto de la garantía.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="monogram-slot"></span>
+          <div class="nav-brand-text">Jockey Closet</div>
+          <p>«Brilla en cada ocasión sin comprar de más»</p>
+        </div>
+        <div class="footer-col">
+          <h5>Navegación</h5>
+          <a href="#" data-goto="inicio">Inicio</a>
+          <a href="#" data-goto="membresias">Membresías</a>
+          <a href="#" data-goto="catalogo">Catálogo</a>
+          <a href="#" data-goto="como-funciona">Cómo funciona</a>
+          <a href="#" data-goto="faq">Preguntas frecuentes</a>
+        </div>
+        <div class="footer-col">
+          <h5>Atención</h5>
+          <a href="#">WhatsApp: +51 999 000 111</a>
+          <a href="#">hola@jockeycloset.pe</a>
+          <p>Jockey Plaza, Lima</p>
+        </div>
+        <div class="footer-col">
+          <h5>Síguenos</h5>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+            <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.5 2.5 2.2 4 5 4.2"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 1 1-3.8-7.1L21 3l-1 4a8.4 8.4 0 0 1 1 4.5Z"/><path d="M8.5 9.5c.3 3 2.5 5.2 5.5 5.5"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Jockey Closet — Un servicio de moda circular en Jockey Plaza. Todos los derechos reservados.</p>
+        <p>Términos y condiciones · Política de privacidad</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ============ APP: PAGO ============ -->
+<section class="app-screen" id="screen-pago">
+  <div class="container">
+    <div class="app-head">
+      <span class="eyebrow">Pago</span>
+      <h2>Confirma tu membresía</h2>
+      <div class="app-progress"><span class="active"></span><span></span><span></span></div>
+    </div>
+    <div class="pago-grid">
+      <div class="pago-summary">
+        <h3 id="pago-plan-nombre">—</h3>
+        <p class="pago-line"><span>Membresía</span><span id="pago-plan-precio">—</span></p>
+        <p class="pago-line"><span>Garantía reembolsable</span><span id="pago-plan-garantia">—</span></p>
+        <p class="pago-line"><span id="pago-plan-items">—</span><span></span></p>
+        <p class="pago-line total"><span>Total inicial</span><span id="pago-plan-total">—</span></p>
+        <p class="pago-note">La garantía será devuelta cuando las prendas sean entregadas en buen estado.</p>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom:16px;">Método de pago</p>
+        <div class="pay-methods">
+          <div class="pay-method" data-method="Tarjeta de crédito"><span class="radio"></span><span class="pay-method-name">Tarjeta de crédito</span></div>
+          <div class="pay-method" data-method="Tarjeta de débito"><span class="radio"></span><span class="pay-method-name">Tarjeta de débito</span></div>
+          <div class="pay-method" data-method="Yape"><span class="radio"></span><span class="pay-method-name">Yape</span></div>
+        </div>
+        <button class="btn btn-primary" id="pago-confirmar" style="width:100%;margin-top:28px;" disabled>Pagar y acceder al catálogo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP: BIENVENIDA ============ -->
+<section class="app-screen" id="screen-bienvenida">
+  <div class="container">
+    <div class="welcome-box">
+      <span class="monogram-slot"></span>
+      <p class="eyebrow">Membresía activa</p>
+      <h2>Bienvenido a Jockey Closet</h2>
+      <p>Tu plan <b id="bienvenida-plan">—</b> ya está activo. Ahora puedes explorar el catálogo disponible según tu plan y reservar tus prendas para tu próxima ocasión.</p>
+      <div class="welcome-actions">
+        <button class="btn btn-primary" id="bienvenida-catalogo">Explorar catálogo</button>
+        <button class="btn btn-outline" id="bienvenida-closet">Ir a Mi Closet</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP: CATALOGO ============ -->
+<section class="app-screen" id="screen-catalogo">
+  <div class="container">
+    <div class="app-head">
+      <span class="eyebrow">Catálogo</span>
+      <h2>Elige tus prendas</h2>
+    </div>
+    <div class="filters-bar">
+      <select id="filtro-ocasion"><option value="">Ocasión</option></select>
+      <select id="filtro-tipo"><option value="">Tipo de prenda</option></select>
+      <select id="filtro-marca"><option value="">Marca</option></select>
+      <select id="filtro-plan">
+        <option value="">Plan disponible</option>
+        <option value="basic">Basic</option>
+        <option value="black">Black</option>
+        <option value="premium">Premium</option>
+      </select>
+      <button id="filtro-limpiar">Limpiar filtros</button>
+    </div>
+    <div class="catalog-grid" id="catalogo-grid"></div>
+  </div>
+</section>
+
+<!-- ============ APP: DETALLE ============ -->
+<section class="app-screen" id="screen-detalle">
+  <div class="container">
+    <button class="btn-text" id="detalle-volver" style="margin-bottom:36px;">← Volver al catálogo</button>
+    <div class="detalle-grid">
+      <div class="detalle-visual" id="detalle-visual"></div>
+      <div class="detalle-info">
+        <p class="product-brand" id="detalle-marca">—</p>
+        <h2 id="detalle-nombre">—</h2>
+        <p class="detalle-desc" id="detalle-desc">—</p>
+        <p class="detalle-combo" id="detalle-combo">—</p>
+
+        <div class="detalle-block">
+          <p class="detalle-block-label">Tallas disponibles</p>
+          <div id="detalle-tallas"></div>
+        </div>
+        <div class="detalle-block">
+          <p class="detalle-block-label">Ocasiones recomendadas</p>
+          <div id="detalle-ocasiones"></div>
+        </div>
+        <div class="detalle-block">
+          <p class="detalle-block-label">Disponible en el plan</p>
+          <p class="detalle-plan" id="detalle-plan">—</p>
+        </div>
+        <div class="detalle-block">
+          <p class="detalle-block-label">Disponibilidad</p>
+          <p id="detalle-disponibilidad" style="color:var(--muted);font-size:14px;">—</p>
+        </div>
+
+        <div class="detalle-actions">
+          <button class="btn btn-primary" id="detalle-reservar">Reservar esta prenda</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP: MI CLOSET ============ -->
+<section class="app-screen" id="screen-closet">
+  <div class="container">
+    <div class="app-head">
+      <span class="eyebrow">Mi Closet</span>
+      <h2>Tu selección para esta ocasión</h2>
+    </div>
+
+    <div class="closet-status">
+      <div class="closet-status-top">
+        <h3>Plan <span id="closet-plan-nombre">—</span> activo</h3>
+        <p class="closet-status-nums">Seleccionadas <b id="closet-seleccionadas">0</b> de <b id="closet-disponibles">0</b> · Restantes <b id="closet-restantes">0</b></p>
+      </div>
+      <div id="closet-progress"></div>
+      <div class="closet-dates">
+        <div>Fecha de reserva<b id="closet-fecha-reserva">—</b></div>
+        <div>Fecha de devolución<b id="closet-fecha-devolucion">—</b></div>
+      </div>
+    </div>
+
+    <div class="closet-list" id="closet-list"></div>
+
+    <div class="closet-cta">
+      <button class="btn btn-primary" id="closet-confirmar" disabled>Confirmar reserva</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP: CONFIRMACION DE RESERVA ============ -->
+<section class="app-screen" id="screen-reserva">
+  <div class="container">
+    <div class="app-head">
+      <span class="eyebrow">Reserva confirmada</span>
+      <h2>Tu look está reservado</h2>
+    </div>
+    <div class="ticket-wrap">
+      <div class="ticket">
+        <span class="monogram-slot"></span>
+        <h2>Jockey Closet</h2>
+        <p class="lead">Hemos confirmado tu selección. Recibirás los detalles de recojo, entrega y devolución en tu correo y WhatsApp.</p>
+        <div class="ticket-perf">
+          <ul id="reserva-lista"></ul>
+          <div class="ticket-dates">
+            <div>Recojo / entrega<b id="reserva-recojo">—</b></div>
+            <div>Devolución<b id="reserva-devolucion">—</b></div>
+          </div>
+        </div>
+        <div class="ticket-code">
+          <span class="eyebrow">Código de reserva</span>
+          <p class="ticket-code-value" id="reserva-codigo">—</p>
+        </div>
+        <p class="ticket-guarantee">Garantía reembolsable activa: <b id="reserva-garantia">—</b></p>
+        <div class="ticket-stub"></div>
+      </div>
+    </div>
+    <div class="reserva-actions">
+      <button class="btn btn-outline" id="reserva-ver-closet">Ver mi reserva</button>
+      <button class="btn btn-primary" id="reserva-explorar">Explorar más prendas</button>
+    </div>
+  </div>
+</section>
+
+<div id="toast"></div>
+
+<script>
+/* ===== Jockey Closet — lógica de la aplicación ===== */
+
+const plans = {
+  basic: {
+    key: 'basic', name: 'Basic', tag: 'Prueba', price: 99, items: 2, guarantee: 200,
+    brands: ['Zara', 'H&M', 'Stradivarius', 'Mango', 'American Eagle', 'Exit'],
+    desc: 'Ideal para probar el servicio y acceder a prendas casuales, modernas y versátiles para ocasiones del día a día.'
+  },
+  black: {
+    key: 'black', name: 'Black', tag: null, price: 379, items: 4, guarantee: 500,
+    brands: ['Zara Exclusivo', 'H&M', 'Stradivarius', 'Mango', 'American Eagle', 'Guess', 'Oysho', 'Renzo Costa', 'Crepier', 'Calvin Klein', 'LÚVARO'],
+    desc: 'Perfecto para quienes necesitan más variedad de looks para cenas, reuniones, after office, entrevistas o eventos sociales.'
+  },
+  premium: {
+    key: 'premium', name: 'Premium', tag: null, price: 599, items: 7, guarantee: 800,
+    brands: ['Massimo Dutti', 'Adolfo Domínguez', 'Hugo Boss', 'Guess', 'Longchamp', 'Purificación García', 'Dolce & Gabbana', 'Dior', 'Karl Lagerfeld', 'Scalpers', 'Lacoste', 'Michael Kors', 'Louis Vuitton'],
+    desc: 'Pensado para ocasiones especiales, eventos importantes y usuarios que buscan una experiencia de moda más exclusiva.'
+  }
+};
+
+const catalog = [
+  { id: 1, name: 'Blazer negro elegante', brand: 'Hugo Boss', type: 'Blazers', occasion: ['Reunión / Formal'], plans: ['premium'], sizes: ['S', 'M', 'L'], color: 'Negro', desc: 'Corte impecable en lana ligera, ideal para proyectar autoridad y elegancia en cualquier sala de juntas.', combo: 'Combínalo con una camisa blanca y un pantalón sastre negro.' },
+  { id: 2, name: 'Vestido satinado champagne', brand: 'Mango', type: 'Vestidos', occasion: ['Cena', 'Boda'], plans: ['basic', 'black'], sizes: ['XS', 'S', 'M'], color: 'Champagne', desc: 'Caída fluida en satén con escote drapeado, perfecto para una cena especial o una boda de día.', combo: 'Súmale una cartera mini dorada y accesorios minimalistas.' },
+  { id: 3, name: 'Cartera estructurada beige', brand: 'Michael Kors', type: 'Carteras', occasion: ['Evento especial'], plans: ['premium'], sizes: ['Único'], color: 'Beige', desc: 'Cartera de mano con estructura rígida y herrajes dorados, la pieza final de cualquier look de gala.', combo: 'Ideal junto al vestido de gala negro o el blazer beige oversize.' },
+  { id: 4, name: 'Camisa blanca premium', brand: 'Massimo Dutti', type: 'Camisas', occasion: ['Entrevista', 'After office'], plans: ['premium'], sizes: ['S', 'M', 'L'], color: 'Blanco', desc: 'Popelín de algodón egipcio con caída impecable, la base perfecta para looks formales o de oficina.', combo: 'Perfecta bajo el blazer negro Hugo Boss.' },
+  { id: 5, name: 'Chaqueta urbana negra', brand: 'Calvin Klein', type: 'Chaquetas', occasion: ['Salida', 'Evento casual'], plans: ['black'], sizes: ['S', 'M', 'L'], color: 'Negro', desc: 'Chaqueta de corte recto con líneas limpias, pensada para after office o salidas nocturnas.', combo: 'Combina bien con el pantalón sastre negro y una camisa básica.' },
+  { id: 6, name: 'Vestido midi floral', brand: 'Zara', type: 'Vestidos', occasion: ['Cena', 'Viaje'], plans: ['basic'], sizes: ['XS', 'S', 'M', 'L'], color: 'Multicolor', desc: 'Estampado floral delicado sobre tejido ligero, ideal para climas cálidos y ocasiones de día.', combo: 'Ligero y versátil: perfecto para looks de viaje.' },
+  { id: 7, name: 'Blazer beige oversize', brand: 'Mango', type: 'Blazers', occasion: ['After office', 'Conferencia'], plans: ['black'], sizes: ['S', 'M'], color: 'Beige', desc: 'Silueta oversize con hombros estructurados, un básico moderno para el mundo profesional.', combo: 'Ideal con la camisa blanca premium y accesorios dorados.' },
+  { id: 8, name: 'Cartera mini dorada', brand: 'Longchamp', type: 'Carteras', occasion: ['Boda', 'Evento especial'], plans: ['premium'], sizes: ['Único'], color: 'Dorado', desc: 'Formato mini con cadena metálica, el acento perfecto para looks de noche.', combo: 'Combina con el vestido satinado champagne.' },
+  { id: 9, name: 'Pantalón sastre negro', brand: 'H&M', type: 'Pantalones', occasion: ['Entrevista', 'Conferencia'], plans: ['basic'], sizes: ['XS', 'S', 'M', 'L'], color: 'Negro', desc: 'Corte recto de tiro alto, la pieza más versátil para armar looks formales desde cero.', combo: 'Perfecto junto a la camisa blanca o la chaqueta urbana.' },
+  { id: 10, name: 'Vestido de gala negro', brand: 'Dolce & Gabbana', type: 'Vestidos', occasion: ['Boda', 'Evento especial'], plans: ['premium'], sizes: ['S', 'M'], color: 'Negro', desc: 'Silueta entallada con detalle en encaje, pensado para las ocasiones más importantes del año.', combo: 'Eleva el look con la cartera estructurada beige.' },
+  { id: 11, name: 'Collar de perlas', brand: 'Renzo Costa', type: 'Accesorios', occasion: ['Cena', 'Boda'], plans: ['black'], sizes: ['Único'], color: 'Blanco perla', desc: 'Pieza atemporal en perlas cultivadas, el detalle que termina cualquier look elegante.', combo: 'Combina con el vestido satinado champagne.' },
+  { id: 12, name: 'Chaqueta de cuero biker', brand: 'Guess', type: 'Chaquetas', occasion: ['Viaje', 'Salida'], plans: ['black'], sizes: ['S', 'M', 'L'], color: 'Negro', desc: 'Cuero vegano con costuras biker, para looks urbanos con actitud.', combo: 'Ideal con el vestido midi floral para un contraste con carácter.' }
+];
+
+const state = {
+  plan: null,
+  payment: null,
+  membershipActive: false,
+  closet: [],
+  filters: { occasion: '', type: '', brand: '', plan: '' },
+  detailId: null,
+  reservation: null
+};
+
+/* ---------- utilidades ---------- */
+function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+function money(n) { return 'S/ ' + n; }
+function fmtDate(d) {
+  return new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+}
+function addDays(base, days) {
+  const d = new Date(base);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+function planLabel(keys) {
+  return keys.map(function (k) { return plans[k].name; }).join(' / ');
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  const t = $('#toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2800);
+}
+
+/* ---------- iconos de prenda (SVG minimalista) ---------- */
+function garmentIcon(type) {
+  const icons = {
+    'Vestidos': '<path d="M26 8 L24 20 L14 54 H50 L40 20 L38 8 Z M26 8 Q32 14 38 8" />',
+    'Blazers': '<path d="M20 12 L32 20 L44 12 L50 18 L44 54 H20 L14 18 Z M32 20 V54" />',
+    'Camisas': '<path d="M22 10 L32 18 L42 10 L50 16 L44 24 L40 20 V54 H24 V20 L20 24 L14 16 Z" />',
+    'Carteras': '<path d="M18 26 H46 L44 54 H20 Z" /><path d="M24 26 V18 Q24 10 32 10 Q40 10 40 18 V26" />',
+    'Chaquetas': '<path d="M18 14 L32 22 L46 14 L52 20 L46 30 L42 26 V54 H22 V26 L18 30 L12 20 Z" />',
+    'Pantalones': '<path d="M20 10 H44 L46 54 H36 L32 26 L28 54 H18 Z" />',
+    'Accesorios': '<circle cx="32" cy="20" r="10" /><path d="M32 30 V44" /><circle cx="32" cy="48" r="4" />'
+  };
+  const inner = icons[type] || icons['Accesorios'];
+  return '<svg viewBox="0 0 64 64" class="g-icon" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">' + inner + '</svg>';
+}
+
+function monogram(extraClass) {
+  return '<svg viewBox="0 0 64 64" class="monogram ' + (extraClass || '') + '" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">' +
+    '<path d="M46 17 A17 17 0 1 1 46 47" />' +
+    '<path d="M27 12 L39 12" />' +
+    '<path d="M33 12 L33 40 Q33 51 22 51" />' +
+    '</svg>';
+}
+
+/* ---------- navegación entre pantallas ---------- */
+function hideAppScreens() { $all('.app-screen').forEach(function (s) { s.classList.remove('active'); }); }
+
+function goHome(anchor) {
+  $('#home').style.display = 'block';
+  hideAppScreens();
+  closeMobileNav();
+  if (anchor) {
+    const el = document.getElementById(anchor);
+    if (el) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 30);
+  } else {
+    window.scrollTo(0, 0);
+  }
+}
+
+function showApp(id) {
+  $('#home').style.display = 'none';
+  hideAppScreens();
+  closeMobileNav();
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function closeMobileNav() {
+  $('#site-nav').classList.remove('nav-open');
+}
+
+/* ---------- membresías / pago ---------- */
+function choosePlan(key) {
+  state.plan = plans[key];
+  state.closet = [];
+  state.payment = null;
+  state.membershipActive = false;
+  renderPago();
+  showApp('screen-pago');
+}
+
+function renderPago() {
+  const p = state.plan;
+  if (!p) return;
+  const total = p.price + p.guarantee;
+  $('#pago-plan-nombre').textContent = p.name;
+  $('#pago-plan-precio').textContent = money(p.price);
+  $('#pago-plan-garantia').textContent = money(p.guarantee);
+  $('#pago-plan-total').textContent = money(total);
+  $('#pago-plan-items').textContent = p.items + (p.items === 1 ? ' prenda incluida' : ' prendas incluidas');
+  $all('.pay-method').forEach(function (m) { m.classList.remove('selected'); });
+  state.payment = null;
+  $('#pago-confirmar').disabled = true;
+}
+
+function setPayment(method, el) {
+  state.payment = method;
+  $all('.pay-method').forEach(function (m) { m.classList.remove('selected'); });
+  el.classList.add('selected');
+  $('#pago-confirmar').disabled = false;
+}
+
+function confirmarPago() {
+  if (!state.payment) { showToast('Elige un método de pago para continuar.'); return; }
+  state.membershipActive = true;
+  $('#bienvenida-plan').textContent = state.plan.name;
+  updateClosetBadge();
+  showApp('screen-bienvenida');
+}
+
+/* ---------- catálogo ---------- */
+function uniqueValues(field) {
+  const set = new Set();
+  catalog.forEach(function (item) {
+    const v = item[field];
+    if (Array.isArray(v)) v.forEach(function (x) { set.add(x); });
+    else set.add(v);
+  });
+  return Array.from(set).sort();
+}
+
+function populateCatalogFilters() {
+  const occSel = $('#filtro-ocasion');
+  const typeSel = $('#filtro-tipo');
+  const brandSel = $('#filtro-marca');
+  if (occSel.options.length <= 1) {
+    uniqueValues('occasion').forEach(function (v) {
+      const o = document.createElement('option'); o.value = v; o.textContent = v; occSel.appendChild(o);
+    });
+    uniqueValues('type').forEach(function (v) {
+      const o = document.createElement('option'); o.value = v; o.textContent = v; typeSel.appendChild(o);
+    });
+    uniqueValues('brand').forEach(function (v) {
+      const o = document.createElement('option'); o.value = v; o.textContent = v; brandSel.appendChild(o);
+    });
+  }
+  occSel.value = state.filters.occasion;
+  typeSel.value = state.filters.type;
+  brandSel.value = state.filters.brand;
+  $('#filtro-plan').value = state.filters.plan;
+}
+
+function applyFilters() {
+  state.filters.occasion = $('#filtro-ocasion').value;
+  state.filters.type = $('#filtro-tipo').value;
+  state.filters.brand = $('#filtro-marca').value;
+  state.filters.plan = $('#filtro-plan').value;
+  renderCatalogGrid();
+}
+
+function clearFilters() {
+  state.filters = { occasion: '', type: '', brand: '', plan: '' };
+  populateCatalogFilters();
+  renderCatalogGrid();
+}
+
+function filteredCatalog() {
+  return catalog.filter(function (item) {
+    if (state.filters.occasion && item.occasion.indexOf(state.filters.occasion) === -1) return false;
+    if (state.filters.type && item.type !== state.filters.type) return false;
+    if (state.filters.brand && item.brand !== state.filters.brand) return false;
+    if (state.filters.plan && item.plans.indexOf(state.filters.plan) === -1) return false;
+    return true;
+  });
+}
+
+function renderCatalogGrid() {
+  const grid = $('#catalogo-grid');
+  const items = filteredCatalog();
+  grid.innerHTML = '';
+  if (items.length === 0) {
+    grid.innerHTML = '<p class="catalog-empty">No encontramos prendas con esos filtros. Prueba ajustando la búsqueda.</p>';
+    return;
+  }
+  items.forEach(function (item) {
+    const tier = item.plans[0];
+    const card = document.createElement('article');
+    card.className = 'product-card tier-' + tier;
+    card.innerHTML =
+      '<div class="product-visual" data-open="' + item.id + '">' + garmentIcon(item.type) +
+      '<span class="product-tier-badge">' + planLabel(item.plans) + '</span></div>' +
+      '<div class="product-body">' +
+      '<p class="product-brand">' + item.brand + '</p>' +
+      '<h3 class="product-name" data-open="' + item.id + '">' + item.name + '</h3>' +
+      '<p class="product-occasion">' + item.occasion.join(' · ') + '</p>' +
+      '<div class="product-actions">' +
+      '<button class="btn-text" data-open="' + item.id + '">Ver detalle</button>' +
+      '<button class="btn-add" data-add="' + item.id + '">Agregar a mi closet</button>' +
+      '</div></div>';
+    grid.appendChild(card);
+  });
+}
+
+function bindCatalogGridEvents() {
+  $('#catalogo-grid').addEventListener('click', function (e) {
+    const openId = e.target.closest('[data-open]');
+    const addId = e.target.closest('[data-add]');
+    if (openId) openDetail(parseInt(openId.getAttribute('data-open'), 10));
+    else if (addId) addToCloset(parseInt(addId.getAttribute('data-add'), 10));
+  });
+}
+
+function goToCatalogo() {
+  populateCatalogFilters();
+  renderCatalogGrid();
+  showApp('screen-catalogo');
+}
+
+function verLooks(occasion) {
+  state.filters.occasion = occasion;
+  populateCatalogFilters();
+  renderCatalogGrid();
+  showApp('screen-catalogo');
+}
+
+/* ---------- detalle de prenda ---------- */
+function openDetail(id) {
+  const item = catalog.find(function (i) { return i.id === id; });
+  if (!item) return;
+  state.detailId = id;
+  $('#detalle-visual').innerHTML = garmentIcon(item.type);
+  $('#detalle-visual').className = 'detalle-visual tier-' + item.plans[0];
+  $('#detalle-marca').textContent = item.brand;
+  $('#detalle-nombre').textContent = item.name;
+  $('#detalle-desc').textContent = item.desc;
+  $('#detalle-combo').textContent = item.combo;
+  $('#detalle-tallas').innerHTML = item.sizes.map(function (s) { return '<span class="pill">' + s + '</span>'; }).join('');
+  $('#detalle-ocasiones').innerHTML = item.occasion.map(function (s) { return '<span class="tag">' + s + '</span>'; }).join('');
+  $('#detalle-plan').textContent = planLabel(item.plans);
+  const hoy = new Date();
+  $('#detalle-disponibilidad').textContent = 'Disponible para reservar a partir del ' + fmtDate(hoy) + '.';
+  showApp('screen-detalle');
+}
+
+function reservarDesdeDetalle() {
+  addToCloset(state.detailId, true);
+}
+
+/* ---------- mi closet ---------- */
+function addToCloset(id, goCloset) {
+  if (!state.membershipActive) {
+    showToast('Primero elige y activa una membresía.');
+    goHome('membresias');
+    return;
+  }
+  const item = catalog.find(function (i) { return i.id === id; });
+  if (!item) return;
+  if (item.plans.indexOf(state.plan.key) === -1) {
+    showToast('Esta prenda no está disponible en tu plan ' + state.plan.name + '.');
+    return;
+  }
+  if (state.closet.some(function (c) { return c.id === id; })) {
+    showToast('Esta prenda ya está en tu closet.');
+    return;
+  }
+  if (state.closet.length >= state.plan.items) {
+    showToast('Ya alcanzaste el límite de prendas de tu plan ' + state.plan.name + '.');
+    return;
+  }
+  state.closet.push(item);
+  updateClosetBadge();
+  showToast(item.name + ' se añadió a tu closet.');
+  if (goCloset) { renderCloset(); showApp('screen-closet'); }
+}
+
+function removeFromCloset(id) {
+  state.closet = state.closet.filter(function (c) { return c.id !== id; });
+  updateClosetBadge();
+  renderCloset();
+}
+
+function updateClosetBadge() {
+  const badge = $('#closet-count');
+  const nav = $('#nav-closet');
+  if (!badge || !nav) return;
+  badge.textContent = state.closet.length;
+  nav.style.display = state.membershipActive ? 'flex' : 'none';
+}
+
+function goToCloset() {
+  if (!state.membershipActive) {
+    showToast('Primero elige y activa una membresía.');
+    goHome('membresias');
+    return;
+  }
+  renderCloset();
+  showApp('screen-closet');
+}
+
+function renderCloset() {
+  const p = state.plan;
+  $('#closet-plan-nombre').textContent = p.name;
+  $('#closet-disponibles').textContent = p.items;
+  $('#closet-seleccionadas').textContent = state.closet.length;
+  $('#closet-restantes').textContent = Math.max(p.items - state.closet.length, 0);
+
+  const dots = $('#closet-progress');
+  dots.innerHTML = '';
+  for (let i = 0; i < p.items; i++) {
+    const d = document.createElement('span');
+    d.className = 'dot' + (i < state.closet.length ? ' filled' : '');
+    dots.appendChild(d);
+  }
+
+  const list = $('#closet-list');
+  list.innerHTML = '';
+  if (state.closet.length === 0) {
+    list.innerHTML = '<p class="catalog-empty">Todavía no has agregado prendas. Explora el catálogo para armar tu look.</p>';
+  } else {
+    state.closet.forEach(function (item) {
+      const row = document.createElement('div');
+      row.className = 'closet-row';
+      row.innerHTML =
+        '<div class="closet-row-icon tier-' + item.plans[0] + '">' + garmentIcon(item.type) + '</div>' +
+        '<div class="closet-row-info"><p class="closet-row-name">' + item.name + '</p><p class="closet-row-brand">' + item.brand + '</p></div>' +
+        '<button class="closet-row-remove" data-remove="' + item.id + '" aria-label="Quitar prenda">&times;</button>';
+      list.appendChild(row);
+    });
+  }
+
+  const hoy = new Date();
+  $('#closet-fecha-reserva').textContent = fmtDate(hoy);
+  $('#closet-fecha-devolucion').textContent = fmtDate(addDays(hoy, 5));
+  $('#closet-confirmar').disabled = state.closet.length === 0;
+}
+
+function bindClosetListEvents() {
+  $('#closet-list').addEventListener('click', function (e) {
+    const rm = e.target.closest('[data-remove]');
+    if (rm) removeFromCloset(parseInt(rm.getAttribute('data-remove'), 10));
+  });
+}
+
+/* ---------- confirmación de reserva ---------- */
+function generarCodigo() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = 'JC-';
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+function confirmarReserva() {
+  if (state.closet.length === 0) return;
+  const hoy = new Date();
+  state.reservation = {
+    code: generarCodigo(),
+    items: state.closet.slice(),
+    plan: state.plan,
+    pickup: addDays(hoy, 1),
+    ret: addDays(hoy, 6)
+  };
+  renderReserva();
+  showApp('screen-reserva');
+}
+
+function renderReserva() {
+  const r = state.reservation;
+  if (!r) return;
+  $('#reserva-codigo').textContent = r.code;
+  $('#reserva-lista').innerHTML = r.items.map(function (i) { return '<li>' + i.name + ' — ' + i.brand + '</li>'; }).join('');
+  $('#reserva-recojo').textContent = fmtDate(r.pickup);
+  $('#reserva-devolucion').textContent = fmtDate(r.ret);
+  $('#reserva-garantia').textContent = money(r.plan.guarantee);
+}
+
+/* ---------- FAQ ---------- */
+function bindFaq() {
+  $all('.faq-item').forEach(function (item) {
+    const q = item.querySelector('.faq-question');
+    q.addEventListener('click', function () {
+      const isOpen = item.classList.contains('open');
+      $all('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+}
+
+/* ---------- menú móvil ---------- */
+function bindMobileNav() {
+  $('#nav-toggle').addEventListener('click', function () {
+    $('#site-nav').classList.toggle('nav-open');
+  });
+}
+
+/* ---------- init ---------- */
+document.addEventListener('DOMContentLoaded', function () {
+  bindCatalogGridEvents();
+  bindClosetListEvents();
+  bindFaq();
+  bindMobileNav();
+
+  $all('[data-plan]').forEach(function (btn) {
+    btn.addEventListener('click', function () { choosePlan(btn.getAttribute('data-plan')); });
+  });
+  $all('.pay-method').forEach(function (el) {
+    el.addEventListener('click', function () { setPayment(el.getAttribute('data-method'), el); });
+  });
+  $('#pago-confirmar').addEventListener('click', confirmarPago);
+  $('#bienvenida-catalogo').addEventListener('click', goToCatalogo);
+  $('#bienvenida-closet').addEventListener('click', goToCloset);
+  $('#detalle-volver').addEventListener('click', function () { showApp('screen-catalogo'); });
+  $('#detalle-reservar').addEventListener('click', reservarDesdeDetalle);
+  $('#closet-confirmar').addEventListener('click', confirmarReserva);
+  $('#reserva-ver-closet').addEventListener('click', goToCloset);
+  $('#reserva-explorar').addEventListener('click', goToCatalogo);
+  $('#filtro-ocasion').addEventListener('change', applyFilters);
+  $('#filtro-tipo').addEventListener('change', applyFilters);
+  $('#filtro-marca').addEventListener('change', applyFilters);
+  $('#filtro-plan').addEventListener('change', applyFilters);
+  $('#filtro-limpiar').addEventListener('click', clearFilters);
+
+  $all('[data-goto]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      const target = el.getAttribute('data-goto');
+      if (target === 'catalogo') goToCatalogo();
+      else if (target === 'closet') goToCloset();
+      else goHome(target);
+    });
+  });
+
+  $all('[data-occasion]').forEach(function (el) {
+    el.addEventListener('click', function () { verLooks(el.getAttribute('data-occasion')); });
+  });
+
+  $all('.monogram-slot').forEach(function (el) { el.innerHTML = monogram(); });
+});
+
+</script>
+</body>
+</html>
